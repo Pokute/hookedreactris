@@ -168,9 +168,6 @@ const HookedReacTris = () => {
             case 'ArrowUp': tryRotate(1); break;
             case 'ArrowDown': onStep(); break;
           }
-          const keys = {
-            'ArrowLeft': () => tryMove(-1),
-          };
         }}
         tabIndex={0}
       >
@@ -194,7 +191,6 @@ const HookedReacTris = () => {
         <button
           onClick={() => tryRotate(1)}
         >
-          R
         </button>
         <button
           onClick={() => tryMove(-1)}
@@ -216,16 +212,17 @@ const HookedReacTris = () => {
   );
 }
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <HookedReacTris />
-        </header>
-      </div>
-    );
-  }
+const App = () => {
+  const [gameNumber, setGameNumber] = useState(0)
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <HookedReacTris key={gameNumber}/>
+        <button onClick={() => setGameNumber(gn => gn + 1)}>New game</button>
+      </header>
+    </div>
+  );
 }
 
 export default App;
